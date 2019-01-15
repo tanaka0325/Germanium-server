@@ -123,3 +123,4 @@ typings/
 
 dist/*
 !.gitkeep
+*.sql
