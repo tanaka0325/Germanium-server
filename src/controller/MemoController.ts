@@ -11,7 +11,7 @@ export class MemoController {
   }
 
   public async save(request: Request, response: Response, next: NextFunction) {
-    const memo = new Memo({ title: request.body.title, sheet_id: request.body.sheet_id })
+    const memo = new Memo({ text: request.body.text, sheet_id: request.body.sheet_id })
     return this.memoRepository.save(memo)
   }
 }

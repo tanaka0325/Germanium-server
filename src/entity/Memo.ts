@@ -7,7 +7,7 @@ export class Memo {
   public id: string
 
   @Column()
-  public title: string
+  public text: string
 
   @Column()
   public sheet_id: string
@@ -18,10 +18,10 @@ export class Memo {
   @UpdateDateColumn({ type: "datetime" })
   public updated_at: Date
 
-  constructor(memo: { title: string; sheet_id: string }) {
+  constructor(memo: { text: string; sheet_id: string }) {
     if (memo) {
       this.id = ulid()
-      this.title = memo.title
+      this.text = memo.text
       this.sheet_id = memo.sheet_id
     }
   }
