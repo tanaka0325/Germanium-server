@@ -6,6 +6,7 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from "typeorm"
 
 import { Sheet } from "./Sheet"
@@ -19,6 +20,7 @@ export class Memo {
   public text: string
 
   @ManyToOne(type => Sheet, sheet => sheet.memos)
+  @JoinColumn({ name: "sheet_id" })
   public sheet: Sheet
 
   @CreateDateColumn({ type: "datetime" })
