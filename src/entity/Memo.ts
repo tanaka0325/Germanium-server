@@ -1,5 +1,14 @@
 import { ulid } from "ulid"
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm"
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryColumn,
+  UpdateDateColumn,
+  ManyToOne,
+} from "typeorm"
+
+import { Sheet } from "./Sheet"
 
 @Entity()
 export class Memo {
@@ -9,8 +18,8 @@ export class Memo {
   @Column()
   public text: string
 
-  @Column()
-  public sheet_id: string
+  @ManyToOne(type => Sheet, sheet => sheet.memos)
+  public sheet: Sheet
 
   @CreateDateColumn({ type: "datetime" })
   public created_at: Date
@@ -18,11 +27,11 @@ export class Memo {
   @UpdateDateColumn({ type: "datetime" })
   public updated_at: Date
 
-  constructor(memo: { text: string; sheet_id: string }) {
+  constructor(memo: { text: string; sheet: Sheet }) {
     if (memo) {
       this.id = ulid()
       this.text = memo.text
-      this.sheet_id = memo.sheet_id
+      this.sheet = memo.sheet
     }
   }
 }
