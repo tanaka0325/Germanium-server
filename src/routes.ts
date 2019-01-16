@@ -1,4 +1,5 @@
 import { MemoController } from "./controller/MemoController"
+import { SheetController } from "./controller/SheetController"
 
 export const Routes = [
   {
@@ -11,6 +12,24 @@ export const Routes = [
     method: "post",
     route: "/memos",
     controller: MemoController,
+    action: "save",
+  },
+  {
+    method: "get",
+    route: "/sheets",
+    controller: SheetController,
+    action: "all",
+  },
+  {
+    method: "get",
+    route: "/sheets/:id",
+    controller: SheetController,
+    action: "one",
+  },
+  {
+    method: "post",
+    route: "/sheets",
+    controller: SheetController,
     action: "save",
   },
 ]
