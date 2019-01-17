@@ -17,4 +17,9 @@ export class MemoController {
     const memo = new Memo({ text: request.body.text, sheet: sheet })
     return this.memoRepository.save(memo).catch(err => console.log(err))
   }
+
+  public async remove(request: Request, response: Response, next: NextFunction) {
+    const memo = await this.memoRepository.findOne(request.params.id)
+    return this.memoRepository.remove(memo)
+  }
 }

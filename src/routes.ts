@@ -15,6 +15,12 @@ export const Routes = [
     action: "save",
   },
   {
+    method: "delete",
+    route: "/memos/:id",
+    controller: MemoController,
+    action: "remove",
+  },
+  {
     method: "get",
     route: "/sheets",
     controller: SheetController,
