@@ -4,6 +4,12 @@ import { SheetController } from "./controller/SheetController"
 export const Routes = [
   {
     method: "get",
+    route: "/memos/search",
+    controller: MemoController,
+    action: "search",
+  },
+  {
+    method: "get",
     route: "/memos",
     controller: MemoController,
     action: "all",

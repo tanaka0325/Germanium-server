@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { getRepository } from "typeorm"
+import { getRepository, Like } from "typeorm"
 
 import { Memo } from "../entity/Memo"
 import { Sheet } from "../entity/Sheet"
@@ -27,5 +27,9 @@ export class MemoController {
     const memo = await this.memoRepository.findOne(request.params.id)
     const newMemo = Object.assign({}, memo, request.body)
     return this.memoRepository.save(newMemo)
+  }
+
+  public async search(request: Request, response: Response, next: NextFunction) {
+    return this.memoRepository.find({ text: Like(`%${request.query.q}%`) })
   }
 }
