@@ -36,6 +36,6 @@ export const Routes = [
     method: "post",
     route: "/sheets",
     controller: SheetController,
-    action: "save",
+    action: "insert",
   },
 ]

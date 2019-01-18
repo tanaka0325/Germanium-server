@@ -15,7 +15,7 @@ export class SheetController {
     return this.sheetRepository.findOne(request.params.id, { relations: ["memos"] })
   }
 
-  public async save(request: Request, response: Response, next: NextFunction) {
+  public async insert(request: Request, response: Response, next: NextFunction) {
     const now = new Date()
     const todayString = formatDate(now)
     const record = await this.sheetRepository
@@ -23,9 +23,14 @@ export class SheetController {
       .where(`date(created_at) = "${todayString}"`)
       .getOne()
     if (record) {
-      return { msg: "today's record already exists!" }
+      response.status(400)
+      return {
+        error: {
+          message: "today's record already exists!",
+        },
+      }
     }
     const sheet = new Sheet()
-    return this.sheetRepository.save(sheet)
+    return this.sheetRepository.insert(sheet)
   }
 }
