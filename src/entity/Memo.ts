@@ -19,6 +19,9 @@ export class Memo {
   @Column()
   public text: string
 
+  @Column({ default: false })
+  public favorite: boolean
+
   @ManyToOne(type => Sheet, sheet => sheet.memos)
   @JoinColumn({ name: "sheet_id" })
   public sheet: Sheet

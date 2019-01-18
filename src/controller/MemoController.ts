@@ -22,4 +22,10 @@ export class MemoController {
     const memo = await this.memoRepository.findOne(request.params.id)
     return this.memoRepository.remove(memo)
   }
+
+  public async edit(request: Request, response: Response, next: NextFunction) {
+    const memo = await this.memoRepository.findOne(request.params.id)
+    const newMemo = Object.assign({}, memo, request.body)
+    return this.memoRepository.save(newMemo)
+  }
 }
