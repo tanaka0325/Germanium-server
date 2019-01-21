@@ -15,7 +15,7 @@ export class SheetController {
     return this.sheetRepository.findOne(request.params.id, { relations: ["memos"] })
   }
 
-  public async insert(request: Request, response: Response, next: NextFunction) {
+  public async save(request: Request, response: Response, next: NextFunction) {
     const now = new Date()
     const todayString = formatDate(now)
     const record = await this.sheetRepository
@@ -31,6 +31,6 @@ export class SheetController {
       }
     }
     const sheet = new Sheet()
-    return this.sheetRepository.insert(sheet)
+    return this.sheetRepository.save(sheet)
   }
 }

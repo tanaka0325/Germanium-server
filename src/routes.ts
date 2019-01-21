@@ -48,6 +48,6 @@ export const Routes = [
     method: "post",
     route: "/sheets",
     controller: SheetController,
-    action: "insert",
+    action: "save",
   },
 ]
